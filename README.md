@@ -4,4 +4,6 @@ The available tools are:<br>
 -Payroll Manager<br>
 -Looping Numbers<br>
 -Income Tax Calculator<br>
--Unit Conversion
+-Unit Conversion<br><br>
+Made by: Zyann Kris Ditan  IT1B<br>
+Instructor: John Rey Geralde
