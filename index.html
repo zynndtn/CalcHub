@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditan's Web Page Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>CALC HUB</h1>
+
+    <div class="navigation">
+        <button id="backButton" class="nav-button delete-button" onclick="showSection('home')" style="display: none;">← Back to Home</button>
+    </div>
+
+    <div id="home" class="app-section" style="display: block;">
+        <h2>Welcome to Zyann Ditan's Calculation Tools!</h2>
+        <p style="text-align: center; color: var(--text-secondary);">
+            Select a calculation tool below to get started.
+        </p>
+
+        <div class="home-tab-grid">
+            <div class="home-nav-card" onclick="showSection('payroll')">
+                <h3>Payroll Manager</h3>
+                <p>Manage and calculate employee gross pay, deductions, and net pay.</p>
+            </div>
+            <div class="home-nav-card" onclick="showSection('loops')">
+                <h3>Looping Calculations</h3>
+                <p>Compute factorial, sum, and average of the first N numbers using different loop types.</p>
+            </div>
+            <div class="home-nav-card" onclick="showSection('tax')">
+                <h3>Income Tax Calculator</h3>
+                <p>Calculate income tax based on the given taxable income amount (Simplified TRAIN Law).</p>
+            </div>
+            <div class="home-nav-card" onclick="showSection('conversion')">
+                <h3>Unit Conversion</h3>
+                <p>Convert between temperature (C/F) and length (Meters/Feet) units.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="payroll" class="app-section" style="display: none;">
+        <h2>Payroll Manager</h2>
+        
+        <div class="input-group">
+            <input type="text" id="employeeName" placeholder="Employee Name" required>
+            <input type="number" id="daysWorked" placeholder="Days Worked" min="0" step="1" required>
+            <input type="number" id="dailyRate" placeholder="Daily Rate" min="0" step="1" required>
+            <input type="number" id="deductionAmount" placeholder="Deduction" min="0" step="1" required>
+            <button onclick="addEmployee()">Add Employee</button>
+        </div>
+        
+        <div class="input-group" style="border-left: 5px solid var(--error-red);">
+            <label for="lineNumberToDelete">Remove Entry:</label>
+            <input type="number" id="lineNumberToDelete" placeholder="Line No.">
+            <button class="delete-button" onclick="deleteEmployee()">Delete Line</button>
+        </div>
+        
+        <h3>Payroll Summary</h3>
+        <table id="payrollTable">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Days Worked</th>
+                    <th>Daily Rate</th>
+                    <th>Deduction</th>
+                    <th>Gross Pay</th>
+                    <th>Net Pay</th>
+                </tr>
+            </thead>
+            <tbody id="payrollTableBody"></tbody>
+        </table>
+    </div>
+
+    <div id="loops" class="app-section" style="display: none;">
+        <h2>Looping Calculations</h2>
+        
+        <div class="input-group">
+            <label>Factorial of N (While Loop):</label>
+            <input type="number" id="factorialInput" placeholder="Enter N" style="max-width: 100px;">
+            <button onclick="calculateFactorial()">Calculate</button>
+            <div class="result">Result: <span id="factorialResult"></span></div>
+        </div>
+
+        <div class="input-group">
+            <label>Sum of first N (Do/While Loop):</label>
+            <input type="number" id="sumInput" placeholder="Enter N" style="max-width: 100px;">
+            <button onclick="calculateSum()">Calculate</button>
+            <div class="result">Result: <span id="sumResult"></span></div>
+        </div>
+        
+        <div class="input-group">
+            <label>Average of first N (For Loop):</label>
+            <input type="number" id="averageInput" placeholder="Enter N" style="max-width: 100px;">
+            <button onclick="calculateAverage()">Calculate</button>
+            <div class="result">Result: <span id="averageResult"></span></div>
+        </div>
+    </div>
+
+    <div id="tax" class="app-section" style="display: none;">
+        <h2>Income Tax Calculator</h2>
+        <div class="input-group" style="max-width: 550px; margin: 25px auto;">
+            <label for="incomeInput">Taxable Income (PHP):</label>
+            <input type="number" id="incomeInput" placeholder="Enter amount" min="0" style="max-width: 200px;">
+            <button onclick="calculateTax()">Compute Tax</button>
+        </div>
+        <div id="taxResult" class="result">Tax result will appear here.</div>
+    </div>
+
+    <div id="conversion" class="app-section" style="display: none;">
+        <h2>Unit Conversion</h2>
+        
+        <div class="input-group">
+            <label>Celsius to Fahrenheit:</label>
+            <input type="number" id="celsiusInput" placeholder="°C">
+            <button onclick="celsiusToFahrenheit()">Convert</button>
+            <div class="result">Result: <span id="fahrenheitResult">0.00°F</span></div>
+        </div>
+
+        <div class="input-group">
+            <label>Fahrenheit to Celsius:</label>
+            <input type="number" id="fahrenheitInput" placeholder="°F">
+            <button onclick="fahrenheitToCelsius()">Convert</button>
+            <div class="result">Result: <span id="celsiusResult">0.00°C</span></div>
+        </div>
+        
+        <div class="input-group">
+            <label>Meters to Feet:</label>
+            <input type="number" id="metersInput" placeholder="m">
+            <button onclick="metersToFeet()">Convert</button>
+            <div class="result">Result: <span id="feetResult">0.00ft</span></div>
+        </div>
+
+        <div class="input-group">
+            <label>Feet to Meters:</label>
+            <input type="number" id="feetInput" placeholder="ft">
+            <button onclick="feetToMeters()">Convert</button>
+            <div class="result">Result: <span id="metersResult">0.00m</span></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
